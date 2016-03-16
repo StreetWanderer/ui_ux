@@ -75,10 +75,9 @@ imgB = urlToImage(imgBData['webformatURL'])
 
 comment = random.choice ([('UI', 'UX', 100), ('Design', 'Experience', 50)])
 
+print "Building image"
 ui = writeOnImage(imgA, comment[0], comment[2])
-print ui.size
 ux = writeOnImage(imgB, comment[1], comment[2])
-print ux.size
 #Combine both images as 1 larger one
 width, height = ui.size
 final = Image.new('RGB', (width * 2, height))
@@ -86,4 +85,13 @@ final.paste(ui, (0, 0))
 final.paste(ux, (width, 0))
 final.save('final.jpg')
 
+print "Tweeting"
 #Post to twitter (maybe add a remark in the tweet body)
+auth = tweepy.OAuthHandler(config.TWITTER_CONSUMER_KEY, config.TWITTER_CONSUMER_SECRET)
+auth.set_access_token(config.TWITTER_OAUTH_TOKEN, config.TWITTER_OAUTH_SECRET)
+
+api = tweepy.API(auth)
+
+api.update_with_media(filename="./final.jpg", status="This is {a} and that is {b}".format(a=comment[0], b=comment[1]))
+
+print "Published to Twitter"
