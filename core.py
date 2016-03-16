@@ -92,6 +92,6 @@ auth.set_access_token(config.TWITTER_OAUTH_TOKEN, config.TWITTER_OAUTH_SECRET)
 
 api = tweepy.API(auth)
 
-api.update_with_media(filename="./final.jpg", status="This is {a} and that is {b}".format(a=comment[0], b=comment[1]))
+api.update_with_media(filename="./final.jpg", status="This is {a} and that is {b}. #{a} #{b}".format(a=comment[0], b=comment[1]))
 
 print "Published to Twitter"
