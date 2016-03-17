@@ -78,6 +78,9 @@ print imgBData["type"]
 print imgBData["webformatURL"]
 
 #Write 'UI' on one image, 'UX' on the other (or some variation, maybe 'Design' vs 'Experience')
+if (imgAData['webformatURL'] == imgBData['webformatURL']):
+    sys.exit("Got a pair of identical images. Not posting.")
+
 imgA = urlToImage(imgAData['webformatURL'])
 imgB = urlToImage(imgBData['webformatURL'])
 
