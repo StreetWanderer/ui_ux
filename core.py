@@ -50,6 +50,14 @@ def writeOnImage(image, text, fontSize):
 
     return im
 
+def postToTwitter(imgPath, commentTuple):
+    auth = tweepy.OAuthHandler(config.TWITTER_CONSUMER_KEY, config.TWITTER_CONSUMER_SECRET)
+    auth.set_access_token(config.TWITTER_OAUTH_TOKEN, config.TWITTER_OAUTH_SECRET)
+
+    api = tweepy.API(auth)
+
+    api.update_with_media(filename=imgPath, status="This is {a} and that is {b}. #{a} #{b}".format(a=commentTuple[0], b=commentTuple[1]))
+
 
 
 order = random.choice(('popular', 'latest'))
@@ -87,11 +95,5 @@ final.save('final.jpg')
 
 print "Tweeting"
 #Post to twitter (maybe add a remark in the tweet body)
-auth = tweepy.OAuthHandler(config.TWITTER_CONSUMER_KEY, config.TWITTER_CONSUMER_SECRET)
-auth.set_access_token(config.TWITTER_OAUTH_TOKEN, config.TWITTER_OAUTH_SECRET)
-
-api = tweepy.API(auth)
-
-api.update_with_media(filename="./final.jpg", status="This is {a} and that is {b}. #{a} #{b}".format(a=comment[0], b=comment[1]))
-
+postToTwitter("./final.jpg", comment)
 print "Published to Twitter"
