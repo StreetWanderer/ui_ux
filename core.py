@@ -102,3 +102,4 @@ print "Tweeting"
 #Post to twitter (maybe add a remark in the tweet body)
 postToTwitter("./final.jpg", (pair[0][1], pair[1][1]))
 print "Published to Twitter"
+sys.exit("Done")
