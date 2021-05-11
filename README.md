@@ -1,6 +1,6 @@
 MOVED
 ====
-This repository is not hosted on GitLab and is read-only to be deleted.
+This repository is now hosted on GitLab. This version is archived and will be deleted in the future
 https://gitlab.com/streetwanderer/ui_ux
 
 UI vs UX
